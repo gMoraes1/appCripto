@@ -4,12 +4,12 @@ import { initializeApp } from "firebase/app";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAOFnKy8LD7UyBhEnNwEk92XgaiHNJ32Ok",
-  authDomain: "appcripto-3d162.firebaseapp.com",
-  projectId: "appcripto-3d162",
-  storageBucket: "appcripto-3d162.appspot.com",
-  messagingSenderId: "1007533481266",
-  appId: "1:1007533481266:web:e09f266ce68bbe05a24b2b"
+  apiKey: "AIzaSyDLDUhzWSbcn14NfvuGHkRpbxASGcYZ6gs",
+  authDomain: "appbdcripto02.firebaseapp.com",
+  projectId: "appbdcripto02",
+  storageBucket: "appbdcripto02.appspot.com",
+  messagingSenderId: "577879815277",
+  appId: "1:577879815277:web:f4888213e4085608adfb64"
 };
 
 

@@ -1,48 +1,64 @@
-import React, {useState} from 'react';  
-import {View,text,StyleSheet,TextInput,TouchableOpacity, Alert} from 'react-native';  
-import{firestore} from '../firebase';  
-import {collection,doc,updateDoc} from 'firebase/firestore';
-export default function AlterarCriptos({route,navigation}) {
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ImageBackground } from 'react-native';
+import { firestore } from '../firebase';
+import { doc, updateDoc } from 'firebase/firestore';
+
+export default function AlterarCriptos({ route, navigation }) {
     const id = route.params.id;
-    const [nomeCripto,setnomeCripto] = useState(route.params.nomeCripto); 
-    const [siglaCripto,setsiglaCripto] = useState(route.params.siglaCripto);
-    const [valorCripto,setvalorCripto] = useState(route.params.valorCripto); 
+    const [nomeCripto, setnomeCripto] = useState(route.params.nomeCripto); 
+    const [siglaCripto, setsiglaCripto] = useState(route.params.siglaCripto);
+    const [valorCripto, setvalorCripto] = useState(route.params.valorCripto);
+
     async function alterarCripto() {
-        try{
-            await updateDoc(doc(firestore,"tbmoeda",id),{
+        try {
+            await updateDoc(doc(firestore, "tbmoeda", id), {
                 nomeCripto: nomeCripto,
                 siglaCripto: siglaCripto,
                 valorCripto: valorCripto,
             });
-            Alert.alert("Sucesso","Criptomoeda alterada com sucesso");
+            Alert.alert("Sucesso", "Criptomoeda alterada com sucesso");
             navigation.navigate("Home");
-        }
-        catch(erro){
-            console.log("Erro ao alterar criptomoeda",erro);
-            Alert.alert("Erro","Erro ao alterar criptomoeda");
+        } catch (erro) {
+            console.log("Erro ao alterar criptomoeda", erro);
+            Alert.alert("Erro", "Erro ao alterar criptomoeda");
         }
     }
+
     return (
-        <View style ={estilo.container}>
+            <ImageBackground source={require('../assets/webimage-12B7D506-A311-4B19-99871314F525675F.jpg')} style={estilo.fundo}>
+        <View style={estilo.container}>
             <View>
-                <Text style={estilo.titulo}> Alterar dados da Criptomoeda </Text>
+                <Text style={estilo.titulo}>Alterar dados da Criptomoeda</Text>
             </View>
-            <TextInput autoCapitalize='words' style={estilo.input} placeholder="Digite a criptomoeda" 
-            onChangeText={setNome} value={nome}/>
-
-            <TextInput autoCapitalize='words' style={estilo.input} placeholder="Digite a sigla" 
-            onChangeText={setNome} value={sigla}/>
-
-            <TextInput autoCapitalize='words' style={estilo.input} placeholder="Digite a valor" 
-            onChangeText={setNome} value={valor}/>
-            
-            <TouchableOpacity style={estilo.btenviar}
-            onPress={() => {
-                alterarCripto(id,nomeCripto,siglaCripto,valorCripto);
-            }}>
-                <Text style={estilo.btntxtenviar}> Alterar </Text>
+            <TextInput
+                autoCapitalize='words'
+                style={estilo.input}
+                placeholder="Digite a criptomoeda"
+                onChangeText={setnomeCripto}
+                value={nomeCripto}
+            />
+            <TextInput
+                autoCapitalize='characters'
+                style={estilo.input}
+                placeholder="Digite a sigla"
+                onChangeText={setsiglaCripto}
+                value={siglaCripto}
+            />
+            <TextInput
+                keyboardType='numeric'
+                style={estilo.input}
+                placeholder="Digite o valor"
+                onChangeText={setvalorCripto}
+                value={valorCripto}
+            />
+            <TouchableOpacity
+                style={estilo.btenviar}
+                onPress={alterarCripto}
+            >
+                <Text style={estilo.btntxtenviar}>Alterar</Text>
             </TouchableOpacity>
         </View>
+        </ImageBackground>
     );
 }
 
@@ -51,10 +67,20 @@ const estilo = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 16,
     },
+
+    fundo: {
+        flex: 1,
+    },
+
     titulo: {
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        margin: 10,
+        padding: 18,
+        borderRadius: 22, 
+        color: 'white',
         fontSize: 25,
-        marginVertical: 40,
         textAlign: 'center',
         fontWeight: 'bold',
     },
@@ -64,15 +90,19 @@ const estilo = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 10,
         fontSize: 15,
-        backgroundColor: '#9ac234',
+        backgroundColor: '#e0e0e0',
         borderRadius: 10,
+        width: '90%',
     },
     btenviar: {
-        marginTop: 10,
+        marginTop: 20,
+        backgroundColor: '#007BFF',
+        padding: 10,
+        borderRadius: 5,
     },
     btntxtenviar: {
-        marginVertical: 40,
         fontSize: 20,
         textAlign: 'center',
+        color: '#FFFFFF',
     },
 });

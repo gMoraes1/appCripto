@@ -1,20 +1,18 @@
-import {React} from "react";
-import {createStackNavigator} from "@react-navigation/stack";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import {Home} from "Home";
-import {Cadastrar} from "./CadastrarCriptos";
-import {Alterar} from "./AlterarCriptos";
+import Home from "./Home";
+import CadastrarCriptos from "./CadastrarCriptos";
+import AlterarCriptos from "./AlterarCriptos";
 
-const stack = createStackNavigator();
+const Tab = createStackNavigator();
 
-export default function Rotas() {
+export default function RotasTab() {
     return (
-        <stack.Navigator>
-            <stack.Screen name="Home" component={Home}/>
-            <stack.Screen name="Cadastrar" component={Cadastrar}/>
-            <stack.Screen name="Alterar" component={Alterar}/>
-        </stack.Navigator>
+        <Tab.Navigator screenOptions={{headerShown: false}}>
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="CadastrarCriptos" component={CadastrarCriptos} />
+            <Tab.Screen name="AlterarCriptos" component={AlterarCriptos} />
+        </Tab.Navigator>
     );
-
 }
-
