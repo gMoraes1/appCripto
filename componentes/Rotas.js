@@ -5,14 +5,14 @@ import Home from "./Home";
 import CadastrarCriptos from "./CadastrarCriptos";
 import AlterarCriptos from "./AlterarCriptos";
 
-const Tab = createStackNavigator();
+const Stack = createStackNavigator();
 
-export default function RotasTab() {
+export default function Rotas() {
     return (
-        <Tab.Navigator screenOptions={{headerShown: false}}>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="CadastrarCriptos" component={CadastrarCriptos} />
-            <Tab.Screen name="AlterarCriptos" component={AlterarCriptos} />
-        </Tab.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="CadastrarCriptos" component={CadastrarCriptos} />
+            <Stack.Screen name="AlterarCriptos" component={AlterarCriptos} />
+        </Stack.Navigator>
     );
 }
